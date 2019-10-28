@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="rpsContainer">
+    <div class="rpsTitleContainer">
+        <div class="rpsTitle"> ROCK - PAPER - SCISSOR </div>
+        <div class="rpsDescription"> Rock Paper Scissors is a zero sum game that is
+            usually played by two people using their hands and no tools. The idea
+            is to make shapes with an outstretched hand where each shape will have
+            a certain degree of power and will lead to an outcome.
+        </div>
+    </div>
+
+
+    <div class="selectionContainer">
+        <div class="selectionTitleContainer">
+            <div class="selectionTitle"> SELECT YOUR BET</div>
+        </div>
+        <div class="selectionBtnContainer">
+            <button class="selectionBtn btn btn-light" type="button"><img class="img" src="{{url_for('static', filename='img/rock.png')}}">ROCK</button>
+            <button class="selectionBtn btn btn-light" type="button"><img class="img" src="{{url_for('static', filename='img/paper.png')}}">PAPER</button>
+            <button class="selectionBtn btn btn-light" type="button"><img class="img" src="{{url_for('static', filename='img/scissor.png')}}">SCISSOR</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="modalContainer">
+            <div class="modalTitleContainer">
+                <div class="modalTitle"></div>
+                <div class="modalExplanationText" hidden></div>
+            </div>
+
+            <div class="modalDisplayContainer">
+                <div class="modalChoiceContainer" id="userChoice">
+                    <div class="modalChoiceImageContainer" id="userImage">
+                        <img class="modalUserImage"/>
+                    </div>
+                    <div class="modalChoiceText" id="userText"></div>
+                    <div class="userChoiceDesc">Your bet</div>
+                </div>
+                <div class="modalChoiceContainer" id="curbChoice">
+                    <div class="modalChoiceImageContainer" id="curbImage">
+                        <img class="modalCurbImage"/>
+                    </div>
+                    <div class="modalChoiceText" id="curbText"></div>
+                    <img src="{{url_for('static', filename='img/curb.png')}}"/>
+                </div>
+            </div>
+
+            <div class="modalConfirmBtnContainer">
+                <button class="confirmBtn btn btn-info" type="button" data-dismiss="modal" aria-label="Close" hidden>OK</button>
+            </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
