@@ -13,26 +13,21 @@ $( document ).ready(function() {
     var displayCurbChoice = $("#curbChoice.modalChoiceContainer")
 
     function populateModal(userChoice){
-        userModalChoiceText.attr("hidden", false);
-        curbModalChoiceText.attr("hidden", false);
         modalUserImage.attr("hidden", false);
         modalCurbImage.attr("hidden", false);
         confirmBtn.attr("hidden", true);
         displayUserChoice.attr("hidden", false);
         displayCurbChoice.attr("hidden", false);
         modalTitle.text("WAITING CURB'S CHOICE");
-        userModalChoiceText.text(userChoice);
         modalUserImage.attr("src", "static/img/"+userChoice.charAt(0).toLowerCase()+userChoice.slice(1)+".png");
         modalCurbImage.attr("src", "static/img/wait.png");
         modalExplanationText.attr("hidden", true);
 
         timers.push(setTimeout(() => {
             $.post('/game', { userChoice: userChoice }).done((response)=>{
-                console.log(response);
                 var curbChoice = response.curbChoice;
                 var result = response.result;
                 (result!=="UNDEFINED") ? modalCurbImage.attr("src", "static/img/"+curbChoice.charAt(0).toLowerCase()+curbChoice.slice(1)+".png") : null;
-                curbModalChoiceText.text(curbChoice);
                 timers.push(setTimeout(()=>{
 
                     modalTitle.text(result);
@@ -40,21 +35,21 @@ $( document ).ready(function() {
                     confirmBtn.attr("hidden", false)
                     if (result === "YOU LOST"){
                         modalExplanationText.text("Curb with " + curbChoice + " wins");
-                        userModalChoiceText.attr("hidden", true)
 //                        modalUserImage.attr("hidden", true)
-                        displayCurbChoice.attr("hidden", true);
+                        displayUserChoice.attr("hidden", true);
                     } else if (result === "YOU WIN"){
                         modalExplanationText.text("You win with " + userChoice);
-                        curbModalChoiceText.attr("hidden", true)
 //                        modalCurbImage.attr("hidden", true)
-                        displayUserChoice.attr("hidden", true);
+                        displayCurbChoice.attr("hidden", true);
+
                     } else if (result === "UNDEFINED"){
-                        modalExplanationText.text("Invalid Choice");
-                        modalTitle.text("Invalid Choice from Curb");
+                        modalExplanationText.text("Invalid Response");
+                        modalTitle.text("Invalid Response from Curb");
+                    }else{
+                        modalExplanationText.attr("hidden", true)
                     }
                 }, 1500));
             }).fail(() =>{
-                curbModalChoiceText.text("Cannot Reach the server");
                 confirmBtn.attr("hidden", false)
             });
         }, 1500));

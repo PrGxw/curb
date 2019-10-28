@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="rpsContainer">
-    <div class="rpsTitleContainer">
+    <div class="rpsTitleContainer container">
         <div class="rpsTitle"> ROCK - PAPER - SCISSOR </div>
         <div class="rpsDescription"> Rock Paper Scissors is a zero sum game that is
             usually played by two people using their hands and no tools. The idea
@@ -12,11 +12,11 @@
     </div>
 
 
-    <div class="selectionContainer">
-        <div class="selectionTitleContainer">
+    <div class="selectionContainer container">
+        <div class="selectionTitleContainer container">
             <div class="selectionTitle"> SELECT YOUR BET</div>
         </div>
-        <div class="selectionBtnContainer">
+        <div class="selectionBtnContainer container">
             <button class="selectionBtn btn btn-light" type="button"><img class="img" src="{{url_for('static', filename='img/rock.png')}}">ROCK</button>
             <button class="selectionBtn btn btn-light" type="button"><img class="img" src="{{url_for('static', filename='img/paper.png')}}">PAPER</button>
             <button class="selectionBtn btn btn-light" type="button"><img class="img" src="{{url_for('static', filename='img/scissor.png')}}">SCISSOR</button>
@@ -49,14 +49,12 @@
                     <div class="modalChoiceImageContainer" id="userImage">
                         <img class="modalUserImage"/>
                     </div>
-                    <div class="modalChoiceText" id="userText"></div>
                     <div class="userChoiceDesc">Your bet</div>
                 </div>
                 <div class="modalChoiceContainer" id="curbChoice">
                     <div class="modalChoiceImageContainer" id="curbImage">
                         <img class="modalCurbImage"/>
                     </div>
-                    <div class="modalChoiceText" id="curbText"></div>
                     <img src="{{url_for('static', filename='img/curb.png')}}"/>
                 </div>
             </div>
