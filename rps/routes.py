@@ -13,9 +13,9 @@ def index():
 
 @app.route('/game', methods=["POST"])
 def game():
-    g = Game()
-    userChoice = request.form['userChoice'] if (request.form.get("userChoice")) else GameItem.UNDEFINED
-    g.set_user_choice(userChoice)
-    curbChoice = g.get_curb_choice()
+    game_instance = Game()
+    user_choice = request.form['userChoice'] if (request.form.get("userChoice")) else None
+    game_instance.set_user_choice(user_choice)
+    curb_choice = game_instance.get_curb_choice()
 
-    return jsonify({"curbChoice": str(curbChoice), "result": str(g.determine_winner())})
+    return jsonify({"curbChoice": str(curb_choice), "result": str(game_instance.determine_winner())})
