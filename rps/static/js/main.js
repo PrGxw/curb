@@ -29,19 +29,15 @@ $( document ).ready(function() {
                 var result = response.result;
                 (result!=="UNDEFINED") ? modalCurbImage.attr("src", "static/img/"+curbChoice.charAt(0).toLowerCase()+curbChoice.slice(1)+".png") : null;
                 timers.push(setTimeout(()=>{
-
                     modalTitle.text(result);
                     modalExplanationText.attr("hidden", false);
                     confirmBtn.attr("hidden", false)
                     if (result === "YOU LOST"){
                         modalExplanationText.text("Curb with " + curbChoice + " wins");
-//                        modalUserImage.attr("hidden", true)
                         displayUserChoice.attr("hidden", true);
                     } else if (result === "YOU WIN"){
                         modalExplanationText.text("You win with " + userChoice);
-//                        modalCurbImage.attr("hidden", true)
                         displayCurbChoice.attr("hidden", true);
-
                     } else if (result === "UNDEFINED"){
                         modalExplanationText.text("Invalid Response");
                         modalTitle.text("Invalid Response from Curb");
@@ -53,22 +49,17 @@ $( document ).ready(function() {
                 confirmBtn.attr("hidden", false)
             });
         }, 1500));
-
     };
-    $(".selectionBtn").click(function (){
 
+    $(".selectionBtn").click(function (){
         var selectedItemStr = $(this).text();
         populateModal(selectedItemStr);
-
         modal.modal();
     });
 
     modal.on('hide.bs.modal', function (e) {
-        for (var i = 0; i < timers.length; i++)
-        {
+        for (var i = 0; i < timers.length; i++) {
             clearTimeout(timers[i]);
         }
     })
-
-
 });

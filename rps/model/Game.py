@@ -31,4 +31,3 @@ class Game:
 
     def determine_winner(self):
         return GameItem.determine_winner(self.curb_choice, self.user_choice)
-
